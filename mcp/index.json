@@ -1,0 +1,113 @@
+{
+  "name": "raspberry-pi-llm-knowledge-base",
+  "purpose": "Reliable Raspberry Pi retrieval corpus for LLMs, agents, RAG, and MCP servers.",
+  "updated": "2026-06-29",
+  "default_confidence_policy": "Prefer official Raspberry Pi documentation. Flag uncertainty when board, OS, kernel, or accessory revision matters.",
+  "documents": [
+    {
+      "path": "docs/commands/raspberry-pi-command-reference.md",
+      "title": "Raspberry Pi Command Reference",
+      "tags": ["commands", "diagnostics", "raspi-config", "vcgencmd", "nmcli", "systemd"],
+      "source_authority": "official_and_linux"
+    },
+    {
+      "path": "docs/configuration/bookworm-configuration.md",
+      "title": "Raspberry Pi OS Bookworm Configuration",
+      "tags": ["bookworm", "config.txt", "cmdline.txt", "raspi-config", "networkmanager", "ssh"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/configuration/security-hardening.md",
+      "title": "Security Hardening",
+      "tags": ["security", "ssh", "firewall", "updates", "users", "secrets"],
+      "source_authority": "official_and_debian"
+    },
+    {
+      "path": "docs/troubleshooting/boot-power-network-display.md",
+      "title": "Boot, Power, Network, and Display Troubleshooting",
+      "tags": ["troubleshooting", "boot", "power", "display", "wifi", "ethernet", "led"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/storage/boot-media-and-nvme.md",
+      "title": "Boot Media, USB, and NVMe",
+      "tags": ["storage", "nvme", "usb", "sd", "bootloader", "eeprom", "pcie"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/hardware/board-selection-and-capabilities.md",
+      "title": "Board Selection and Capabilities",
+      "tags": ["hardware", "pi5", "pi4", "zero2w", "compute-module", "performance", "power"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/projects/common-project-patterns.md",
+      "title": "Common Raspberry Pi Project Patterns",
+      "tags": ["projects", "home-lab", "server", "ap", "camera", "iot", "automation", "llm"],
+      "source_authority": "curated"
+    },
+    {
+      "path": "docs/projects/camera-and-ai.md",
+      "title": "Camera and AI Workloads",
+      "tags": ["camera", "rpicam", "libcamera", "ai", "hailo", "ai-hat", "vision"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/projects/systemd-and-scripts.md",
+      "title": "Systemd Services and Scripts",
+      "tags": ["systemd", "scripts", "automation", "services", "boot", "logging"],
+      "source_authority": "linux"
+    },
+    {
+      "path": "docs/configuration/essential-config.md",
+      "title": "Essential Configuration",
+      "tags": ["config.txt", "bootloader", "device-tree", "overlays", "uart", "pcie"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/configuration/networking-and-wireless.md",
+      "title": "Networking and Wireless Configuration",
+      "tags": ["networking", "wifi", "ap", "raspap", "pwnagotchi", "nmcli"],
+      "source_authority": "official_and_curated"
+    },
+    {
+      "path": "docs/gpio/pinout-and-interfacing.md",
+      "title": "GPIO and 40-Pin Header",
+      "tags": ["gpio", "pinout", "i2c", "spi", "uart", "pwm", "wiring"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/hardware/raspberry-pi-5.md",
+      "title": "Raspberry Pi 5 Hardware Specifications",
+      "tags": ["pi5", "hardware", "pcie", "nvme", "usb", "rtc", "fan", "power"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/hardware/raspberry-pi-zero-2w.md",
+      "title": "Raspberry Pi Zero 2 W",
+      "tags": ["zero2w", "hardware", "portable", "wifi", "low-power"],
+      "source_authority": "official"
+    },
+    {
+      "path": "docs/kali-linux.md",
+      "title": "Kali Linux on Raspberry Pi",
+      "tags": ["kali", "security", "wireless", "pentest", "arm64"],
+      "source_authority": "third_party_distro"
+    },
+    {
+      "path": "docs/power-portable.md",
+      "title": "Power and Portable Setups",
+      "tags": ["power", "battery", "portable", "ups", "pisugar", "thermal"],
+      "source_authority": "curated"
+    }
+  ],
+  "never_guess_fields": [
+    "GPIO voltage tolerance",
+    "physical pin numbers",
+    "PCIe enablement and boot order",
+    "camera connector compatibility",
+    "EEPROM bootloader flags",
+    "power supply requirements",
+    "OS-specific network configuration backend"
+  ]
+}

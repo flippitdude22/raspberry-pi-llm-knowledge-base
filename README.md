@@ -1,64 +1,62 @@
 # Raspberry Pi LLM Knowledge Base
 
-**Curated, high-accuracy Raspberry Pi documentation structured for LLM ingestion, RAG systems, custom AI agents (MCP, Hermes, Claude, etc.), and developer workflows.**
+Curated Raspberry Pi knowledge for LLM ingestion, RAG, agent tools, and MCP-style retrieval.
 
-This repository contains clean, organized Markdown files focused on the hardware and configuration you actually use:
-- Raspberry Pi 5
-- Raspberry Pi Zero 2 W
-- GPIO, interfacing, and embedded projects
-- Headless / portable / battery-powered setups (PiSugar, etc.)
-- Networking for RaspAP, Pwnagotchi, and pentesting APs
-- Kali Linux on Raspberry Pi
-- Production-line automation and vision QC systems
+The purpose of this repository is to give an LLM a reliable local source for Raspberry Pi questions: hardware capabilities, Raspberry Pi OS configuration, GPIO, networking, boot, storage, camera, AI accelerator, troubleshooting, scripts, and practical project patterns.
 
-## Why This Repo Exists
-Official Raspberry Pi documentation is excellent but scattered across the web and AsciiDoc sources. LLMs frequently hallucinate pin numbers, power limits, `config.txt` parameters, PCIe behavior, and overlay syntax. This curated set gives your agents ground-truth facts so they generate correct, working configurations and code every time.
+## Accuracy Rules for Agents
 
-**Primary Sources (always verify against these)**
-- Official documentation: https://www.raspberrypi.com/documentation/computers/
-- Source repository: https://github.com/raspberrypi/documentation (AsciiDoc)
+When an LLM uses this repo, it should:
 
-## How to Use With LLMs / RAG / Agents
-1. Clone this repo.
-2. Load the `docs/` folder (or specific subfolders) into your vector database / embedding pipeline.
-3. In your agent system prompts, add:
-   > "Always ground answers in the official Raspberry Pi specifications from this knowledge base. Use exact BCM GPIO numbers, `config.txt` parameters, and power requirements. If information is missing, say so and suggest checking the live official docs."
-4. For project-specific agents, create small additional Markdown files in a `projects/` folder with your custom wiring diagrams, timing, and notes.
+1. Prefer official Raspberry Pi documentation facts over blogs, forum memory, or model recall.
+2. Use BCM GPIO numbering unless a table explicitly says physical pin number.
+3. Treat `/boot/firmware/config.txt` as the current Raspberry Pi OS Bookworm and later boot config path.
+4. Verify model-specific behavior before suggesting overlays, power limits, PCIe, camera connectors, or bootloader settings.
+5. Say when information is missing or hardware-dependent instead of guessing.
+6. Ask for board model, OS release, power supply, storage media, and exact symptoms for troubleshooting.
 
 ## Repository Structure
+
+```text
+docs/
+  commands/                 Fast command references
+  configuration/            config.txt, raspi-config, networking, security
+  gpio/                     40-pin header and interfaces
+  hardware/                 Board-specific hardware notes
+  os/                       Raspberry Pi OS, Kali, package and service workflows
+  projects/                 Common use cases and project templates
+  storage/                  SD, USB, NVMe, boot order, filesystem guidance
+  troubleshooting/          Symptom-driven runbooks
+mcp/
+  index.json                Retrieval manifest for MCP/RAG importers
+  agent-instructions.md     System prompt and retrieval contract
+scripts/
+  collect-pi-diagnostics.sh Safe diagnostic bundle script for a running Pi
 ```
-raspberry-pi-llm-knowledge-base/
-├── README.md
-├── docs/
-│   ├── hardware/
-│   │   ├── raspberry-pi-5.md
-│   │   └── raspberry-pi-zero-2w.md
-│   ├── gpio/
-│   │   └── pinout-and-interfacing.md
-│   ├── configuration/
-│   │   ├── essential-config.md
-│   │   └── networking-and-wireless.md
-│   └── power-portable.md
-└── kali-linux.md
-```
+
+## Best Entry Points
+
+- Start with [mcp/agent-instructions.md](mcp/agent-instructions.md) for how an LLM should use this repo.
+- Use [mcp/index.json](mcp/index.json) as a machine-readable map of topics, tags, and source authority.
+- Use [docs/commands/raspberry-pi-command-reference.md](docs/commands/raspberry-pi-command-reference.md) for quick shell commands.
+- Use [docs/troubleshooting/boot-power-network-display.md](docs/troubleshooting/boot-power-network-display.md) for field troubleshooting.
+
+## Primary Sources
+
+- Raspberry Pi computer documentation: https://www.raspberrypi.com/documentation/computers/
+- Raspberry Pi documentation source: https://github.com/raspberrypi/documentation
+- Raspberry Pi OS docs: https://www.raspberrypi.com/documentation/computers/os.html
+- Raspberry Pi configuration docs: https://www.raspberrypi.com/documentation/computers/configuration.html
+- Raspberry Pi hardware docs: https://www.raspberrypi.com/documentation/computers/raspberry-pi.html
 
 ## Update Process
-This is a curated snapshot. To keep it current:
-1. Periodically pull the latest from https://github.com/raspberrypi/documentation
-2. Re-generate or manually merge changes into these Markdown files.
-3. Or use scripts to convert AsciiDoc → Markdown automatically.
 
-## License & Attribution
-Content is derived from the official Raspberry Pi documentation, which is licensed under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-This repository follows the same spirit. Please attribute the Raspberry Pi Foundation when sharing.
+1. Check official documentation for changed behavior before updating facts.
+2. Add source URLs to every new knowledge file.
+3. Keep commands copy-pasteable and mark destructive commands clearly.
+4. Run `scripts/collect-pi-diagnostics.sh` on real hardware when diagnosing.
+5. Keep personal project notes separate from official facts.
 
-## Next Steps for Your Workflow
-- Feed into your MCP server or Hermes multi-LLM agent.
-- Create project-specific subfolders (e.g., `projects/pwnagotchi/`, `projects/vision-qc-line/`).
-- Add your custom scripts, wiring notes, and measured power data.
+## License and Attribution
 
-**Goal**: Zero hallucinations on Raspberry Pi hardware facts. Fast, reliable agent-generated configs and code for your cybersecurity, embedded, and automation projects.
-
----
-
-*Maintained for practical, high-accuracy use in real hardware projects.*
+This repository summarizes and organizes Raspberry Pi knowledge with attribution to Raspberry Pi Ltd documentation. Official Raspberry Pi documentation is the authority for specifications and configuration details. Check the linked source pages for current license terms and updates.
